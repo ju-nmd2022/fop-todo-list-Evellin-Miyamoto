@@ -1,0 +1,11 @@
+* {
+  font-family: "Playfair Display", serif;
+}
+
+.container {
+  display: grid;
+}
+
+h1 {
+  text-align: center;
+}
