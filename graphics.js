@@ -1,9 +1,22 @@
+/* To Do List
+Foundations of Programming - Jönköping University
+Evellin Miyamoto */
+
+//Variables
 let width = 900;
 let height = 800;
+let canvas;
+
+/* To make the canvas as a background
+https://www.youtube.com/watch?v=OIfEHD3KqCg
+https://github.com/processing/p5.js/issues/3073 */
 function setup() {
-  createCanvas(900, 700);
+  canvas = createCanvas(900, 700);
+  canvas.style("z-index", "-1");
+  canvas.position(280, 80);
 }
 
+//Retangles draw
 function scenery() {
   background(255, 255, 255);
   noStroke();
@@ -13,7 +26,8 @@ function scenery() {
   rect(200, 40, 500, 600, 40);
 }
 
-//Code inspired by the night sky - Garrit's class
+/*Code inspired by the night sky - Garrit's class
+designed with clouds*/
 let clouds = [];
 
 for (let i = 0; i < 20; i++) {

@@ -12,8 +12,11 @@
     />
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="graphics-style.css" />
-    <script src="p5.min.js"></script>
+    <!-- <script src="p5.js"></script> -->
+    <!-- <script src="p5.dom.js"></script> -->
     <script src="graphics.js"></script>
+    <script src="todolist.js"></script>
+    <script src="p5.min.js"></script>
     <title>To Do List</title>
   </head>
   <body>
@@ -21,10 +24,14 @@
       <h1>To Do List</h1>
     </header>
     <main class="container">
-      <div class="itemsBox">
+      <div class="inputBox">
         <input type="text" id="inputList" placeholder="To do..." />
-        <button id="addButton">Add</button>
+        <button id="addItemButton">Add</button>
       </div>
+      <div id="todoList">
+        <ul id="todoItems"></ul>
+      </div>
+      <div id=""></div>
     </main>
   </body>
 </html>

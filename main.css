@@ -3,7 +3,7 @@ body {
   height: 100%;
 }
 
-body {
+.container {
   margin: 0;
   display: grid;
   /* This centers horizontally. */
