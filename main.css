@@ -1,11 +1,13 @@
-* {
-  font-family: "Playfair Display", serif;
+html,
+body {
+  height: 100%;
 }
 
-.container {
+body {
+  margin: 0;
   display: grid;
-}
-
-h1 {
-  text-align: center;
+  /* This centers horizontally. */
+  justify-content: center;
+  /* This centers vertically. */
+  align-items: start;
 }

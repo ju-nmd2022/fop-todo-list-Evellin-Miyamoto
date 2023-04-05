@@ -1,10 +1,16 @@
+let width = 900;
+let height = 800;
+function setup() {
+  createCanvas(900, 700);
+}
+
 function scenery() {
   background(255, 255, 255);
   noStroke();
   fill(254, 234, 250);
-  rect(220, 120, 500, 600, 40);
+  rect(220, 60, 500, 600, 40);
   fill(222, 226, 255);
-  rect(200, 100, 500, 600, 40);
+  rect(200, 40, 500, 600, 40);
 }
 
 //Code inspired by the night sky - Garrit's class
