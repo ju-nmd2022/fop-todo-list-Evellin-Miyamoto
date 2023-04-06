@@ -14,8 +14,17 @@ h1 {
 .inputBox {
   display: flex;
   justify-content: center;
+  margin-bottom: 2em;
 }
 
-#todoElements {
-  display: flex;
+#todoList {
+  display: grid;
 }
+
+/* span {
+  margin-right: 7em;
+}
+
+.doneElement {
+    text-decoration: line-through;
+  
