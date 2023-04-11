@@ -3,7 +3,6 @@ Foundations of Programming - Jönköping University
 Evellin Miyamoto */
 
 // Got help from my husband with the planning, to structure the ideas before coding.
-
 // Variables and array
 let addButton;
 let finalList;
@@ -16,7 +15,15 @@ let doneList = [];
 function loadHandler() {
   getItemsFromJson();
   let addButton = document.getElementById("addItemButton");
+  let addEnter = document.getElementById("textBox");
   addButton.addEventListener("click", addNewItem);
+  /* To add with enter: https://www.youtube.com/watch?v=-BgTrpvOFFc
+  https://stackoverflow.com/questions/35394937/keyboardevent-keycode-deprecated-what-does-this-mean-in-practice*/
+  addEnter.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      addNewItem();
+    }
+  });
 }
 
 //get items saved on the local storage
@@ -47,33 +54,35 @@ function getItemsFromJson() {
 
   for (let savedItem in todoList) {
     const todoElement = document.createElement("li");
+    todoElement.classList.add("listElement");
     const spanElement = document.createElement("span");
+    spanElement.classList.add("spanElement");
     spanElement.innerText = todoList[savedItem];
     todoElement.appendChild(spanElement);
     finalList.appendChild(todoElement);
 
     if (doneList.includes(spanElement.innerText)) {
-      todoElement.style.textDecoration = "line-through";
+      spanElement.style.textDecoration = "line-through";
     }
     // Creating the done button
     const doneElement = document.createElement("button");
-    doneElement.innerText = "✅";
+    doneElement.innerText = "✓";
     todoElement.appendChild(doneElement);
     doneElement.classList.add("doneElement");
     doneElement.addEventListener("click", () => {
       //This only adds the items that are not already in the doneList array to avoid duplicates
-      // Not reference - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT
-      // includes reference - https://www.w3schools.com/jsref/jsref_includes_array.asp
+      // "Not" reference - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT
+      // "includes" reference - https://www.w3schools.com/jsref/jsref_includes_array.asp
       if (!doneList.includes(spanElement.innerText)) {
         doneList.push(spanElement.innerText);
-        todoElement.style.textDecoration = "line-through";
+        spanElement.style.textDecoration = "line-through";
         localStorage.setItem("doneList", JSON.stringify(doneList));
       }
     });
 
     // Creating the delete button
     const deleteElement = document.createElement("button");
-    deleteElement.innerText = " ❌";
+    deleteElement.innerText = " ✗";
     deleteElement.classList.add("deleteElement");
     todoElement.appendChild(deleteElement);
     deleteElement.addEventListener("click", deleteTask);
@@ -84,11 +93,13 @@ function getItemsFromJson() {
 function addNewItem() {
   let inputValue = document.getElementById("textBox").value;
   let finalList = document.getElementById("finalList");
-  //creating list
+  // Creating list
   const todoElement = document.createElement("li");
+  todoElement.classList.add("listElement");
 
   const spanElement = document.createElement("span");
   spanElement.innerText = inputValue;
+  spanElement.classList.add("spanElement");
   todoElement.appendChild(spanElement);
 
   // To make the input blank after adding to the list
@@ -96,20 +107,20 @@ function addNewItem() {
 
   // Creating the done button
   const doneElement = document.createElement("button");
-  doneElement.innerText = "✅";
+  doneElement.innerText = "✓";
   todoElement.appendChild(doneElement);
   doneElement.classList.add("doneElement");
   doneElement.addEventListener("click", () => {
     if (!doneList.includes(spanElement.innerText)) {
       doneList.push(spanElement.innerText);
-      todoElement.style.textDecoration = "line-through";
+      spanElement.style.textDecoration = "line-through";
       localStorage.setItem("doneList", JSON.stringify(doneList));
     }
   });
 
   // Creating the delete button
   const deleteElement = document.createElement("button");
-  deleteElement.innerText = " ❌";
+  deleteElement.innerText = " ✗";
   deleteElement.classList.add("deleteElement");
   todoElement.appendChild(deleteElement);
   deleteElement.addEventListener("click", deleteTask);
@@ -122,7 +133,6 @@ function addNewItem() {
     //had to put in here otherwise it was adding blank task
     finalList.appendChild(todoElement);
 
-    textBox.innerText = "";
     localStorage.setItem("todoList", JSON.stringify(todoList));
   }
 }

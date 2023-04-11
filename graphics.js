@@ -21,9 +21,9 @@ function scenery() {
   background(255, 255, 255);
   noStroke();
   fill(254, 234, 250);
-  rect(220, 60, 500, 600, 40);
+  rect(180, 60, 550, 600, 40);
   fill(222, 226, 255);
-  rect(200, 40, 500, 600, 40);
+  rect(160, 40, 550, 600, 40);
 }
 
 /*Code inspired by the night sky - Garrit's class

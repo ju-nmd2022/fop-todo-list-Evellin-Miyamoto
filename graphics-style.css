@@ -1,3 +1,7 @@
+/* To Do List
+Foundations of Programming - Jönköping University
+Evellin Miyamoto */
+
 * {
   font-family: "Playfair Display", serif;
 }
@@ -9,6 +13,8 @@ h1 {
   text-align: center;
   margin-top: 3%;
   margin-bottom: 3%;
+  color: #cd60e9;
+  font-size: 30px;
 }
 
 .inputBox {
@@ -17,10 +23,65 @@ h1 {
   margin-bottom: 2em;
 }
 
-#todoList {
-  display: grid;
+.listElement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* span {
-  margin-right: 7em;
-} */
+#finalList {
+  padding: 0%;
+}
+
+/* used this reference as a base to style the button and the hover
+   https://uiverse.io/barisdogansutcu/black-duck-67 */
+.doneElement,
+.deleteElement {
+  position: relative;
+  color: #5e099c;
+  background-color: #f4eff6;
+  border-style: solid;
+  border-color: #f3e5f51f;
+  border-radius: 3%;
+  padding-right: 6px;
+  padding-left: 6px;
+  transform: translate(0px, 0px) rotate(0deg);
+  transition: 0.2s;
+  box-shadow: -4px -2px 16px 0px #ffffff,
+    4px 2px 16px 0px rgba(186, 95, 231, 0.48);
+}
+
+.doneElement:hover,
+.deleteElement:hover {
+  color: #765191;
+  background-color: #eb9ff7;
+  box-shadow: -2px -1px 8px 0px #ffffff,
+    2px 1px 8px 0px rgba(190, 95, 231, 0.48);
+}
+
+#addItemButton:hover {
+  color: #08040a;
+  background-color: #df4cf5c4;
+  box-shadow: -2px -1px 8px 0px #ffffff,
+    2px 1px 8px 0px rgba(186, 95, 231, 0.48);
+}
+
+.spanElement {
+  flex: 1;
+  color: #2c075b;
+  font-size: 18px;
+}
+
+#textBox {
+  border-radius: 5%;
+  background-color: #f1ebf5f2;
+  border-color: #f4eff6e8;
+}
+
+#addItemButton {
+  border-radius: 10%;
+  background-color: #af79f5c6;
+  border-color: #f3e5f5a1;
+  color: #3a085d;
+  transition: 0.2s;
+}
