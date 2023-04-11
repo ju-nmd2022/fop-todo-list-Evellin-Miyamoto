@@ -147,9 +147,15 @@ function deleteTask() {
   todoList.splice(taskIndex, 1);
 
   //Delete item from array doneList
-  const doneIndex = doneList.indexOf(task);
-  doneList.splice(doneIndex, 1);
+  /* Had to put in a if statement otherwise it was deleting the last doneItem
+  when i tried to delete an item from todoList that was not in the doneList.
+  on console it was -1
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf*/
+  if (doneList.includes(task)) {
+    const doneIndex = doneList.indexOf(task);
 
+    doneList.splice(doneIndex, 1);
+  }
   element.parentNode.removeChild(element);
   localStorage.setItem("todoList", JSON.stringify(todoList));
   localStorage.setItem("doneList", JSON.stringify(doneList));
