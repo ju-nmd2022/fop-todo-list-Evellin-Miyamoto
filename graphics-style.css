@@ -7,6 +7,10 @@ Evellin Miyamoto */
 }
 .container {
   display: grid;
+  /* This centers horizontally. */
+  justify-content: center;
+  /* This centers vertically. */
+  align-items: start;
 }
 
 h1 {
@@ -31,8 +35,12 @@ h1 {
 
 #finalList {
   padding: 0%;
+  position: relative;
 }
 
+.p5Canvas {
+  position: absolute;
+}
 /* used this reference as a base to style the button and the hover
    https://uiverse.io/barisdogansutcu/black-duck-67 */
 .doneElement,

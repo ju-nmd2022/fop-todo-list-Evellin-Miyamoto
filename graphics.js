@@ -2,45 +2,39 @@
 Foundations of Programming - Jönköping University
 Evellin Miyamoto */
 
-//Variables
-let width = 900;
-let height = 800;
+// Variables
 let canvas;
 
-/* To make the canvas as a background
-https://www.youtube.com/watch?v=OIfEHD3KqCg
-https://github.com/processing/p5.js/issues/3073 */
-function setup() {
-  canvas = createCanvas(900, 700);
-  canvas.style("z-index", "-1");
-  canvas.position(280, 80);
-}
-
-//Retangles draw
+// Rectangles draw
 function scenery() {
   background(255, 255, 255);
   noStroke();
+  // Use percentages for rectangle positions and sizes
   fill(254, 234, 250);
-  rect(180, 60, 550, 600, 40);
+  rect(width * 0.2, height * 0.1, width * 0.6, height * 0.75, 40);
   fill(222, 226, 255);
-  rect(160, 40, 550, 600, 40);
+  rect(width * 0.18, height * 0.08, width * 0.6, height * 0.75, 40);
 }
 
-/*Code inspired by the night sky - Garrit's class
-designed with clouds*/
+/* Code inspired by the night sky - Garrit's class
+designed with clouds */
 let clouds = [];
 
-for (let i = 0; i < 20; i++) {
-  const cloud = {
-    x: Math.floor(Math.random() * width),
-    y: Math.floor(Math.random() * height),
-    alpha: Math.random(),
-  };
-  clouds.push(cloud);
+function initializeClouds() {
+  for (let i = 0; i < 20; i++) {
+    const cloud = {
+      x: Math.floor(Math.random() * windowWidth),
+      y: Math.floor(Math.random() * windowHeight),
+      alpha: random(255),
+      speed: random(0.03, 0.05),
+    };
+    clouds.push(cloud);
+  }
 }
 
-function cloudDraw(x, y, s) {
+function cloudDraw(x, y, s, alpha) {
   push();
+  fill(255, 255, 255, alpha);
   ellipse(x, y, s);
   ellipse(x + 15, y, s);
   ellipse(x + 30, y, s);
@@ -48,14 +42,34 @@ function cloudDraw(x, y, s) {
   pop();
 }
 
+function setup() {
+  // Use windowWidth and windowHeight to make the canvas responsive
+  canvas = createCanvas(windowWidth, windowHeight);
+  canvas.style("z-index", "-1");
+
+  initializeClouds();
+}
+
 function draw() {
   scenery();
   noStroke();
 
+  // Draw clouds after rectangles to appear on top
   for (let cloud of clouds) {
-    fill(255, 255, 255, Math.abs(Math.sin(cloud.alpha)) * 255);
-    cloudDraw(cloud.x, cloud.y, 20);
-    //ellipse(cloud.x, cloud.y, 20);
-    cloud.alpha = cloud.alpha + 0.03;
+    cloudDraw(cloud.x, cloud.y, 20, cloud.alpha);
+    cloud.alpha = noise(cloud.speed * frameCount) * 255;
   }
 }
+
+// Resize canvas when the window is resized
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+
+  // Reposition the clouds within the visible window
+  clouds.forEach((cloud) => {
+    cloud.x = random(width);
+    cloud.y = random(height);
+  });
+}
+
+//debug with chatgpt
