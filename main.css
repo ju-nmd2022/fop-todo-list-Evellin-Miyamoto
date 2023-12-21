@@ -1,0 +1,15 @@
+html,
+body {
+  height: 100%;
+  /* background-color: rgb(255, 255, 255); */
+  position: relative;
+}
+
+.container {
+  margin: 0;
+  display: grid;
+  /* This centers horizontally. */
+  justify-content: center;
+  /* This centers vertically. */
+  align-items: start;
+}
